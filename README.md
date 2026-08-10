@@ -211,7 +211,7 @@ Contributions are welcome! If you'd like to improve features, add new learning t
 
 **Sachin Ellakar**
 - **GitHub**: [@Sachin10e](https://github.com/Sachin10e)
-- **LinkedIn**: [Sachin Ellakar](https://linkedin.com/in/sachin-ellakar-565252288)
+- **LinkedIn**: [Sachin Ellakar](https://linkedin.com/in/sachin-ellakar)
 - **Live Demo**: [https://examarena-in.vercel.app](https://examarena-in.vercel.app)
 
 ---
