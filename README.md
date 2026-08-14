@@ -137,6 +137,8 @@ flowchart TD
     E --> F
     F --> G
 ```
+---
+
 ## AI & Retrieval Pipeline
 
 ExamArena uses a hybrid retrieval architecture rather than relying exclusively on LLM generation.
