@@ -19,11 +19,11 @@ AI-powered study planning, RAG-based learning, adaptive revision, and interactiv
 
 ## Overview
 
-**ExamArena** is an AI-powered exam preparation platform that transforms syllabus PDFs, lecture notes, and previous-year questions into structured, personalized study workflows.
+**ExamArena** is an AI-powered exam preparation platform that turns syllabus PDFs, lecture notes, and previous-year questions into personalized study workflows.
 
-The platform combines **Retrieval-Augmented Generation (RAG)**, semantic vector search, interactive knowledge graphs, AI-generated assessments, and **SuperMemo SM-2 spaced repetition** to provide a unified environment for exam preparation.
+It combines **RAG**, semantic vector search, AI-generated assessments, interactive knowledge graphs, and **SM-2 spaced repetition** to help students plan, learn, practice, and revise from a single platform.
 
-🌐 **Live Demo:** [examarena-in.vercel.app](https://examarena-in.vercel.app/)
+🌐 **[Live Demo →](https://examarena-in.vercel.app/)**
 
 ---
 
