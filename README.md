@@ -28,50 +28,92 @@ It combines **RAG**, semantic vector search, AI-generated assessments, interacti
 ---
 
 ## Key Features
+## Key Features
 
 ### AI-Powered Study Planning
 
-- Generates structured, unit-by-unit study plans from uploaded learning material
-- Produces long-answer questions, short-answer questions, and MCQs
-- Provides contextual study tips and learning resources
+- Generates personalized, unit-by-unit study plans from uploaded learning material
+- Creates long-answer questions, short-answer questions, and MCQs
+- Provides contextual study guidance and learning resources
 - Streams AI-generated content in real time
 
 ### RAG-Based AI Tutor
 
-- Processes uploaded PDFs, documents, and study material
+- Processes PDFs and other study materials
 - Generates embeddings for semantic retrieval
-- Combines vector search with full-text search
+- Combines vector search with PostgreSQL full-text search
 - Uses retrieved context to generate grounded responses
-- Supports streaming AI chat and contextual explanations
+- Supports streaming AI conversations
 
 ### Interactive Knowledge Graph
 
-- Builds relationships between syllabus topics
-- Represents prerequisites, related topics, extensions, and examples
-- Provides interactive topic exploration
-- Generates contextual explanations for selected topics
+- Maps relationships between syllabus topics
+- Represents prerequisites, related topics, and extensions
+- Enables interactive topic exploration
+- Provides contextual explanations for selected concepts
 
 ### Spaced Repetition
 
 - Generates flashcards from study material
 - Implements the **SuperMemo SM-2 algorithm**
-- Tracks ease factor, review interval, and next review date
+- Tracks review intervals and ease factors
 - Supports active recall and scheduled revision
 
 ### AI Mock Exams
 
 - Generates multiple-choice mock examinations
-- Provides automated scoring
-- Includes answer explanations
+- Provides automated scoring and answer explanations
 - Tracks assessment performance
 
-### Student-Focused Experience
+### Study Experience
 
 - Focus Mode for distraction-free studying
-- Light and dark themes
-- Responsive interface
+- Responsive interface with light and dark themes
 - Print-friendly study material
-- Public sharing of generated study plans
+- Public sharing of study plans
+- PWA support## Key Features
+
+### AI-Powered Study Planning
+
+- Generates personalized, unit-by-unit study plans from uploaded learning material
+- Creates long-answer questions, short-answer questions, and MCQs
+- Provides contextual study guidance and learning resources
+- Streams AI-generated content in real time
+
+### RAG-Based AI Tutor
+
+- Processes PDFs and other study materials
+- Generates embeddings for semantic retrieval
+- Combines vector search with PostgreSQL full-text search
+- Uses retrieved context to generate grounded responses
+- Supports streaming AI conversations
+
+### Interactive Knowledge Graph
+
+- Maps relationships between syllabus topics
+- Represents prerequisites, related topics, and extensions
+- Enables interactive topic exploration
+- Provides contextual explanations for selected concepts
+
+### Spaced Repetition
+
+- Generates flashcards from study material
+- Implements the **SuperMemo SM-2 algorithm**
+- Tracks review intervals and ease factors
+- Supports active recall and scheduled revision
+
+### AI Mock Exams
+
+- Generates multiple-choice mock examinations
+- Provides automated scoring and answer explanations
+- Tracks assessment performance
+
+### Study Experience
+
+- Focus Mode for distraction-free studying
+- Responsive interface with light and dark themes
+- Print-friendly study material
+- Public sharing of study plans
 - PWA support
 
 ---
