@@ -28,7 +28,6 @@ It combines **RAG**, semantic vector search, AI-generated assessments, interacti
 ---
 
 ## Key Features
-## Key Features
 
 ### AI-Powered Study Planning
 
