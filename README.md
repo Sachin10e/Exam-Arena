@@ -1,219 +1,336 @@
-# 🎓 ExamArena
+<div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-examarena--in.vercel.app-6366f1?style=for-the-badge&logo=vercel)](https://examarena-in.vercel.app)
-[![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Supabase](https://img.shields.io/badge/Supabase_pgvector-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
-[![Google Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
+# ExamArena
 
-**ExamArena** is a production-grade, AI-native exam preparation platform that transforms raw syllabus PDFs, lecture notes, and past-year questions (PYQs) into structured, unit-by-unit study paths. Powered by a hybrid Retrieval-Augmented Generation (RAG) pipeline, Gemini 2.5 Flash, an interactive Knowledge Graph, and an SM-2 spaced repetition engine, ExamArena equips students with an intelligent, distraction-free environment to master complex academic topics.
+### AI-Powered Exam Preparation Platform
 
-🌐 **Live Production App:** [https://examarena-in.vercel.app](https://examarena-in.vercel.app)
+AI-powered study planning, RAG-based learning, adaptive revision, and interactive exam preparation in one platform.
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-ExamArena-6366F1?style=flat-square&logo=vercel&logoColor=white)](https://examarena-in.vercel.app)&nbsp;&nbsp;
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org/)&nbsp;&nbsp;
+[![React](https://img.shields.io/badge/React-19-20232A?style=flat-square&logo=react&logoColor=61DAFB)](https://react.dev/)&nbsp;&nbsp;
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)&nbsp;&nbsp;
+[![Supabase](https://img.shields.io/badge/Supabase-pgvector-3ECF8E?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com/)&nbsp;&nbsp;
+[![Gemini](https://img.shields.io/badge/Gemini-2.5%20Flash-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
+
+</div>
 
 ---
 
-## 📸 Key Capabilities & Architecture
+## Overview
 
+**ExamArena** is an AI-powered exam preparation platform that transforms syllabus PDFs, lecture notes, and previous-year questions into structured, personalized study workflows.
+
+The platform combines **Retrieval-Augmented Generation (RAG)**, semantic vector search, interactive knowledge graphs, AI-generated assessments, and **SuperMemo SM-2 spaced repetition** to provide a unified environment for exam preparation.
+
+🌐 **Live Demo:** [examarena-in.vercel.app](https://examarena-in.vercel.app/)
+
+---
+
+## Key Features
+
+### AI-Powered Study Planning
+
+- Generates structured, unit-by-unit study plans from uploaded learning material
+- Produces long-answer questions, short-answer questions, and MCQs
+- Provides contextual study tips and learning resources
+- Streams AI-generated content in real time
+
+### RAG-Based AI Tutor
+
+- Processes uploaded PDFs, documents, and study material
+- Generates embeddings for semantic retrieval
+- Combines vector search with full-text search
+- Uses retrieved context to generate grounded responses
+- Supports streaming AI chat and contextual explanations
+
+### Interactive Knowledge Graph
+
+- Builds relationships between syllabus topics
+- Represents prerequisites, related topics, extensions, and examples
+- Provides interactive topic exploration
+- Generates contextual explanations for selected topics
+
+### Spaced Repetition
+
+- Generates flashcards from study material
+- Implements the **SuperMemo SM-2 algorithm**
+- Tracks ease factor, review interval, and next review date
+- Supports active recall and scheduled revision
+
+### AI Mock Exams
+
+- Generates multiple-choice mock examinations
+- Provides automated scoring
+- Includes answer explanations
+- Tracks assessment performance
+
+### Student-Focused Experience
+
+- Focus Mode for distraction-free studying
+- Light and dark themes
+- Responsive interface
+- Print-friendly study material
+- Public sharing of generated study plans
+- PWA support
+
+---
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    A["Study Materials<br/>PDF · DOCX · TXT · PYQ"]
+    B["Document Processing<br/>Chunking · OCR · Parsing"]
+    C["Gemini Embeddings<br/>768D Vectors"]
+    D["Supabase + pgvector<br/>Vector + Full-Text Search"]
+    E["RAG Pipeline<br/>Context Retrieval + Prompt"]
+    F["Gemini 2.5 Flash<br/>Streaming Responses"]
+    G["ExamArena App<br/>Plans · Chat · Exams · RAG<br/>Graph · Flashcards · Stats"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
 ```
-                                    +------------------------------+
-                                    |   Document Ingestion         |
-                                    | (PDF, DOCX, TXT, Vision OCR) |
-                                    +--------------+---------------+
-                                                   |
-                                                   v
-                                    +------------------------------+
-                                    |  Sliding Window Tokenizer    |
-                                    |   (500 tokens / 100 overlap) |
-                                    +--------------+---------------+
-                                                   |
-                                                   v
-                                    +------------------------------+
-                                    |  Gemini Embedding Vectorizer |
-                                    | (gemini-embedding-001 768d)  |
-                                    +--------------+---------------+
-                                                   |
-                                                   v
-                                    +------------------------------+
-                                    |  Supabase pgvector & Hybrid  |
-                                    | (RRF Vector + Sparse FTS)    |
-                                    +--------------+---------------+
-                                                   |
-                                                   v
-                                    +------------------------------+
-                                    | Multi-Pass AI Answer Engine  |
-                                    | (Gemini 2.5 Flash Stream)    |
-                                    +------------------------------+
+## AI & Retrieval Pipeline
+
+ExamArena uses a hybrid retrieval architecture rather than relying exclusively on LLM generation.
+
+### Document Ingestion
+
+```text
+Document
+   ↓
+Text Extraction / OCR
+   ↓
+Chunking
+   ↓
+Gemini Embedding
+   ↓
+768D Vector
+   ↓
+Supabase pgvector
+```
+
+### Hybrid Retrieval
+
+The retrieval layer combines:
+
+- Dense vector similarity search
+- PostgreSQL full-text search
+- Reciprocal Rank Fusion (RRF)
+- Metadata and document filtering
+
+Retrieved context is then passed to the AI generation pipeline.
+
+### AI Response Pipeline
+
+```text
+User Question
+     ↓
+Query Analysis
+     ↓
+Relevant Context Retrieval
+     ↓
+Context Assembly
+     ↓
+Gemini 2.5 Flash
+     ↓
+Streaming Response
+     ↓
+Markdown / LaTeX / Mermaid Rendering
 ```
 
 ---
 
-## ✨ System Features
+## Technology Stack
 
-### 🧠 1. Automated Study Plan Generator
-- **Unit-Isolating Pedagogy**: Generates exhaustive study units containing **Long Essay Questions** (5–10 marks), **Short Answers** (1–2 marks), and **MCQs with inline key validation**.
-- **Contextual Resource Enrichment**: Injects custom Pro-Tips along with dynamic, URL-encoded **Google Web Search** and **YouTube Tutorial** links for every long-form question.
-- **Streaming Response Architecture**: Real-time server-to-client streaming via Next.js Edge responses for sub-second first-byte latency.
-
-### 💬 2. Multi-Pass AI Chat & Q&A Engine
-- **3-Pass Reasoning Pipeline**: 
-  1. *Factual Domain Assembly*: Extracts core syllabus concepts.
-  2. *Exam Structure Normalization*: Formats responses into university scoring schemes.
-  3. *Visual & Mathematical Synthesis*: Embeds LaTeX math (`$$`), comparison markdown tables, and dynamic **Mermaid.js** flowcharts.
-
-### 🕸️ 3. Interactive Knowledge Graph & Topic Topology
-- **Graph Visualization**: Renders interactive 2D/3D topic nodes and relational edges (`prerequisite`, `related`, `extension`, `example_of`).
-- **Semantic Topic Explainer**: Node selection triggers RAG context extraction to generate instant markdown topic overviews.
-
-### 🧠 4. Spaced Repetition Flashcards (SuperMemo SM-2)
-- **Active Recall Engine**: Auto-extracts high-yield flashcard decks directly from syllabus materials.
-- **Algorithmic Review Scheduling**: Employs the **SuperMemo SM-2 algorithm** (`ease_factor`, `interval`, `next_review_at`) to optimize memory retention over time.
-
-### 📝 5. Automated Mock Exam Generator
-- **Instant Quiz Construction**: Synthesizes 5–7 question multiple-choice tests with answer explanations and automated scoring telemetry.
-
-### 🎨 6. Premium UI Engine & Default Light Mode
-- **Zero-Flicker Light Theme**: Synchronous head injection script prevents SSR theme flicker, fully compliant with React 19 hydration policies (`suppressHydrationWarning`).
-- **Focus Mode**: One-click distraction-free workspace hiding surrounding navigation shells.
-- **Handwritten / Print Engine**: Custom CSS `@media print` rules formatted to export study plans as clean handwritten or print PDF documents.
+| Area | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 16 |
+| **Frontend** | React 19 |
+| **Language** | TypeScript 5 |
+| **Styling** | Tailwind CSS v4 |
+| **AI / LLM** | Google Gemini 2.5 Flash |
+| **Embeddings** | Gemini Embedding |
+| **Vector Database** | Supabase pgvector |
+| **Database** | PostgreSQL |
+| **Authentication** | Supabase Auth |
+| **Visualization** | Recharts, Mermaid.js |
+| **Animation** | Framer Motion |
+| **PWA** | next-pwa |
+| **Build** | Turbopack / Webpack |
+| **Deployment** | Vercel |
 
 ---
 
-## 🛠️ Technology Stack
-
-| Domain | Technology | Description |
-| :--- | :--- | :--- |
-| **Frontend** | Next.js 16 (App Router), React 19 | SSR, Server Actions, Dynamic Streaming |
-| **Language** | TypeScript 5 | Strict static typing across API & UI |
-| **Styling** | Tailwind CSS v4, PostCSS | Custom utility design system & Light/Dark themes |
-| **AI / LLM** | Google Gemini API (`@google/genai`) | `gemini-2.5-flash` for streaming & OCR |
-| **Embeddings & Vector** | `gemini-embedding-001`, Supabase `pgvector` | 768-dimensional dense vector embeddings |
-| **Database & Auth** | Supabase (Postgres), Row Level Security | Multi-tenant user isolation & JWT auth |
-| **Visualizations** | Recharts, Mermaid.js, Framer Motion | Analytics charts, dynamic flowcharts, micro-animations |
-| **PWA & Offline** | `next-pwa`, Web Workers | Service Worker caching & PWA support |
-| **Build & Dev** | Turbopack (`next dev --turbo`), Webpack | Instant HMR development & optimized production bundles |
-| **Deployment** | Vercel | Global CDN Edge Deployment |
-
----
-
-## 📁 Repository Architecture
+## Repository Structure
 
 ```text
 exam-ai-platform/
-├── app/                        # Next.js App Router
-│   ├── actions/                # Server Actions (upload, flashcard reviews, subjects)
-│   ├── api/                    # Serverless API Routes
-│   │   ├── chat/               # Multi-pass streaming Q&A API
-│   │   ├── extract-flashcards/ # AI Flashcard extraction
-│   │   ├── generate-exam/      # AI Mock Exam generator
-│   │   ├── generate-plan/      # Streaming Study Plan generator
-│   │   ├── knowledge-graph/    # Graph topology API
-│   │   └── subjects/           # Subject container management
-│   ├── arena/                  # Main Study Arena Workspace page
-│   ├── chat/                   # AI Tutor Chat view
-│   ├── components/             # Reusable UI Components
-│   │   ├── ai/                 # Mermaid diagrams, markdown renderers
-│   │   ├── layout/             # TopNav, Sidebar, ThemeToggle, Shortcuts
-│   │   └── study/              # Flashcard decks, Mock Exam modals
-│   ├── history/                # Saved study session browser
-│   ├── settings/               # Account & Theme settings
-│   ├── share/[id]/             # Public study plan viewer
-│   ├── globals.css             # Design tokens, Light mode perfect inversion, Print CSS
-│   └── layout.tsx              # Root Layout, SSR theme injection, Providers
-├── lib/                        # Core Engine Utilities
-│   ├── ai/                     # Answer engine, question classifier, hybrid search
-│   ├── analytics/              # Topic relationships, progress metrics, spaced repetition
-│   ├── embeddings.ts           # Gemini embedding vectorizer
-│   ├── spacedRepetition.ts     # SM-2 algorithm mathematical engine
-│   └── supabaseAdmin.ts        # Supabase Service Role client
-├── public/                     # Static assets, icons, PWA manifest, service workers
-├── supabase_*.sql              # Database migrations (RLS, Graph, Multi-Tenant, Analytics)
-├── next.config.ts              # Next.js configuration & package imports optimization
-└── package.json                # Dependencies & scripts
+├── app/
+│   ├── actions/
+│   ├── api/
+│   │   ├── chat/
+│   │   ├── extract-flashcards/
+│   │   ├── generate-exam/
+│   │   ├── generate-plan/
+│   │   ├── knowledge-graph/
+│   │   └── subjects/
+│   ├── arena/
+│   ├── chat/
+│   ├── components/
+│   │   ├── ai/
+│   │   ├── layout/
+│   │   └── study/
+│   ├── history/
+│   ├── settings/
+│   ├── share/
+│   ├── globals.css
+│   └── layout.tsx
+│
+├── lib/
+│   ├── ai/
+│   ├── analytics/
+│   ├── embeddings.ts
+│   ├── spacedRepetition.ts
+│   └── supabaseAdmin.ts
+│
+├── public/
+├── supabase_multi_tenant.sql
+├── supabase_graph.sql
+├── supabase_analytics.sql
+├── supabase_session_resume.sql
+├── next.config.ts
+└── package.json
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-- **Node.js**: `v20.x` or higher
-- **Package Manager**: `npm`, `pnpm`, or `bun`
-- **Database**: Active [Supabase](https://supabase.com) Project (with `pgvector` extension enabled)
-- **AI Keys**: Google [Gemini API Key](https://aistudio.google.com/)
+- Node.js 20+
+- npm, pnpm, or bun
+- Supabase project
+- Google Gemini API key
+- `pgvector` enabled in Supabase
 
-### 1. Clone & Install
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Sachin10e/exam-ai-platform.git
-cd exam-ai-platform
+git clone https://github.com/Sachin10e/Exam-Arena.git
+cd Exam-Arena
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
 ```
 
-### 2. Configure Environment Variables
+### 3. Configure Environment Variables
 
-Create a `.env.local` file in the root folder:
+Create `.env.local`:
 
 ```env
-# Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
 
-# Google Gemini API
-GEMINI_API_KEY=your_google_gemini_api_key
+GEMINI_API_KEY=your-google-gemini-api-key
 ```
 
-### 3. Setup Database Schema
+> Never commit `.env.local` or expose service-role credentials.
 
-Run the migration scripts provided in the root directory inside your Supabase SQL Editor:
+### 4. Configure the Database
 
-1. `supabase_multi_tenant.sql` (Creates core tables, indices, and RLS policies)
-2. `supabase_graph.sql` (Creates `topics` and `topic_edges` tables for Knowledge Graph)
-3. `supabase_analytics.sql` (Creates analytics tracking tables)
-4. `supabase_session_resume.sql` (User preference syncing)
+Run the required SQL migration files from the repository in the Supabase SQL Editor:
 
-### 4. Run Development Server (Turbopack)
+```text
+supabase_multi_tenant.sql
+supabase_graph.sql
+supabase_analytics.sql
+supabase_session_resume.sql
+```
+
+### 5. Start Development
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 📜 Available Scripts
+## Available Scripts
 
-| Script | Command | Purpose |
-| :--- | :--- | :--- |
-| **Development** | `npm run dev` | Launches Next.js dev server with **Turbopack** |
-| **Production Build** | `npm run build` | Compiles optimized production bundle with Webpack PWA bundling |
-| **Start Server** | `npm run start` | Starts the production server |
-| **Linting** | `npm run lint` | Runs ESLint checks across code files |
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to improve features, add new learning tools, or enhance UI aesthetics:
-
-1. Fork the Repository
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+| Command | Purpose |
+| :--- | :--- |
+| `npm run dev` | Start development server |
+| `npm run build` | Create production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
 
 ---
 
-## 👤 Author
+## Deployment
+
+ExamArena is deployed using **Vercel**.
+
+**Live Application:**  
+[https://examarena-in.vercel.app](https://examarena-in.vercel.app)
+
+For production deployment:
+
+1. Import the repository into Vercel.
+2. Configure the required environment variables.
+3. Connect the Supabase project.
+4. Deploy the application.
+
+---
+
+## Security
+
+The application uses Supabase authentication and Row Level Security to isolate user data.
+
+Sensitive credentials should remain server-side and must never be committed to the repository.
+
+Required secrets include:
+
+```text
+SUPABASE_SERVICE_ROLE_KEY
+GEMINI_API_KEY
+```
+
+---
+
+## Future Improvements
+
+- Improved adaptive learning recommendations
+- Additional AI-powered assessment modes
+- More detailed learning analytics
+- Expanded document-processing support
+- Enhanced offline/PWA capabilities
+- Additional retrieval and ranking strategies
+
+---
+
+## Author
 
 **Sachin Ellakar**
-- **GitHub**: [@Sachin10e](https://github.com/Sachin10e)
-- **LinkedIn**: [Sachin Ellakar](https://linkedin.com/in/sachin-ellakar-565252288)
-- **Live Demo**: [https://examarena-in.vercel.app](https://examarena-in.vercel.app)
+
+[GitHub](https://github.com/Sachin10e)&nbsp;&nbsp; · &nbsp;&nbsp;[LinkedIn](https://www.linkedin.com/in/sachin-ellakar/)&nbsp;&nbsp; ·&nbsp;&nbsp; [Live Demo](https://examarena-in.vercel.app)
 
 ---
 
-<p align="center">Made with ❤️ for students preparing for high-stakes exams.</p>
+<div align="center">
+
+**ExamArena — Learn smarter. Prepare better.**
+
+</div>
